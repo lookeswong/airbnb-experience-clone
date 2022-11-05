@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import NavBar from "./components/NavBar";
+import Hero from "./components/Hero";
+import Card from "./components/Card";
+import data from "./data";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/*
+Challenge: Build the Navbar component.
+Check the Figma file for the design specifics.
+*/
+
+export default function App() {
+    const cards = data.map(item => {
+        return <Card
+                    key={item.id}
+                    img={item.coverImg}
+                    rating={item.stats.rating}
+                    reviewCount={item.stats.reviewCount}
+                    location={item.location}
+                    title={item.title}
+                    price={item.price}
+                />
+    });
+
+    return (
+        <div>
+            <NavBar />
+            <Hero />
+            <section className="cards-list">
+                {cards}
+            </section>
+        </div>
+    )
 }
 
-export default App;
